@@ -1,4 +1,4 @@
-package org.acme;
+package net.feelapp.ebiz;
 
 import io.quarkus.test.junit.NativeImageTest;
 

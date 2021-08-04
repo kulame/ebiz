@@ -1,4 +1,4 @@
-package org.acme;
+package net.feelapp.ebiz;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
