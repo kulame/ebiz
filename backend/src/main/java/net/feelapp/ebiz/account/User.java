@@ -2,6 +2,7 @@ package net.feelapp.ebiz.account;
 import lombok.Data;
 import io.smallrye.mutiny.Uni;
 
+
 @Data
 public class User{
     private String email;
