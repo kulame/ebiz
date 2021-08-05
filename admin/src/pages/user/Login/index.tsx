@@ -15,7 +15,7 @@ import { login } from '@/services/ant-design-pro/api';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 
 import styles from './index.less';
-
+console.log("page/login");
 const LoginMessage: React.FC<{
   content: string;
 }> = ({ content }) => (
