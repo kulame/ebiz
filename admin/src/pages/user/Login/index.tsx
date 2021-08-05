@@ -134,14 +134,7 @@ const Login: React.FC = () => {
                 key="account"
                 tab={intl.formatMessage({
                   id: 'pages.login.accountLogin.tab',
-                  defaultMessage: '账户密码登录',
-                })}
-              />
-              <Tabs.TabPane
-                key="mobile"
-                tab={intl.formatMessage({
-                  id: 'pages.login.phoneLogin.tab',
-                  defaultMessage: '手机号登录',
+                  defaultMessage: '邮箱密码登录',
                 })}
               />
             </Tabs>
@@ -157,14 +150,14 @@ const Login: React.FC = () => {
             {type === 'account' && (
               <>
                 <ProFormText
-                  name="username"
+                  name="email"
                   fieldProps={{
                     size: 'large',
                     prefix: <UserOutlined className={styles.prefixIcon} />,
                   }}
                   placeholder={intl.formatMessage({
                     id: 'pages.login.username.placeholder',
-                    defaultMessage: '用户名: admin or user',
+                    defaultMessage: '邮箱: admin or user',
                   })}
                   rules={[
                     {
@@ -172,7 +165,7 @@ const Login: React.FC = () => {
                       message: (
                         <FormattedMessage
                           id="pages.login.username.required"
-                          defaultMessage="请输入用户名!"
+                          defaultMessage="请输入邮箱!"
                         />
                       ),
                     },
@@ -302,12 +295,6 @@ const Login: React.FC = () => {
               </a>
             </div>
           </ProForm>
-          <Space className={styles.other}>
-            <FormattedMessage id="pages.login.loginWith" defaultMessage="其他登录方式" />
-            <AlipayCircleOutlined className={styles.icon} />
-            <TaobaoCircleOutlined className={styles.icon} />
-            <WeiboCircleOutlined className={styles.icon} />
-          </Space>
         </div>
       </div>
       <Footer />

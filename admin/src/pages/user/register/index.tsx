@@ -72,12 +72,15 @@ const Register: FC = () => {
     onSuccess: (data, params) => {
       console.log(data);
       console.log(params);
+      let param = params[0];
+      console.log(param.email);
       if (data.status === 'ok') {
+        let param = params[0];
         message.success('注册成功！');
         history.push({
           pathname: '/user/register-result',
           state: {
-            account: params.email,
+            account: param.email,
           },
         });
       }else{

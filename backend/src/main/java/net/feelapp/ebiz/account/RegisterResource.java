@@ -30,7 +30,7 @@ public class RegisterResource {
             """;
 
     @POST
-    public Uni<RegisterResp> add(RegisterReq req){
+    public Uni<Resp> add(RegisterReq req){
         System.out.println(req.getEmail());
         var encoder = new BCryptPasswordEncoder();
         var password_crypt = encoder.encode(req.getPassword());
@@ -38,7 +38,7 @@ public class RegisterResource {
                 .execute(Tuple.of(req.getEmail(),password_crypt, LocalDateTime.now()))
                 .map(rs -> {
                     int count = rs.rowCount();
-                    RegisterResp resp = new RegisterResp();
+                    Resp resp = new Resp();
                     if(count == 1) {
                         resp.setStatus("ok");
                     }else{

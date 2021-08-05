@@ -6,7 +6,7 @@ export interface StateType {
 }
 
 export interface UserRegisterParams {
-  mail: string;
+  email: string;
   password: string;
   confirm: string;
 }
