@@ -12,7 +12,8 @@ import javax.ws.rs.core.MediaType;
 public class RegisterResource {
 
     @POST
-    public Uni<RegisterResp> doRegister(){
+    public Uni<RegisterResp> add(RegisterReq req){
+        System.out.println(req.getEmail());
         RegisterResp resp = new RegisterResp();
         resp.setStatus("ok");
         return  Uni.createFrom().item(resp);
