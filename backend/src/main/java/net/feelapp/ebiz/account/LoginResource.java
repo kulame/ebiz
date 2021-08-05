@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 @Path("/api/login")
 @Produces(MediaType.APPLICATION_JSON)
-public class UserResource{
+public class LoginResource {
 
     @GET
     @Path("account")

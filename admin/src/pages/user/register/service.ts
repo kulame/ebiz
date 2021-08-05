@@ -9,14 +9,13 @@ export interface UserRegisterParams {
   mail: string;
   password: string;
   confirm: string;
-  mobile: string;
-  captcha: string;
-  prefix: string;
 }
 
-export async function fakeRegister(params: UserRegisterParams) {
-  return request('/api/register', {
+export async function doRegister(params: UserRegisterParams) {
+  let result = request('/api/register', {
     method: 'POST',
     data: params,
   });
+  console.log(result);
+  return result;
 }
