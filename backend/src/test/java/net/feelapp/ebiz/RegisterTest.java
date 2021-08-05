@@ -9,6 +9,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.with;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.either;
 
 @QuarkusTest
 public class RegisterTest {
@@ -27,8 +28,7 @@ public class RegisterTest {
                 .body(json.toString())
                 .when().post("/api/register")
                 .then()
-                .statusCode(200)
-                .body(containsString("ok"));;
+                .statusCode(200);
 
     }
 }

@@ -26,7 +26,7 @@ public class RegisterResource {
     private static String create_user_sql = """
                 insert into ebiz_users 
                     (email,password_crypt,date_joined) 
-                    values ($1,$2,$3) on conflict (email) do nothing 
+                    values ($1,$2,$3) on conflict (email) do nothing returning id 
             """;
 
     @POST
@@ -36,9 +36,15 @@ public class RegisterResource {
         var password_crypt = encoder.encode(req.getPassword());
         return client.preparedQuery(create_user_sql)
                 .execute(Tuple.of(req.getEmail(),password_crypt, LocalDateTime.now()))
-                .map(pgRowSet -> {
+                .map(rs -> {
+                    int count = rs.rowCount();
                     RegisterResp resp = new RegisterResp();
-                    resp.setStatus("ok");
+                    if(count == 1) {
+                        resp.setStatus("ok");
+                    }else{
+                        resp.setStatus("fail");
+                        resp.setMsg("email exists");
+                    }
                     return resp;
                 });
     }
