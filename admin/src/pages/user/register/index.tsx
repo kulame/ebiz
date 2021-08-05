@@ -2,7 +2,8 @@ import type { FC } from 'react';
 import { useState, useEffect } from 'react';
 import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
 import type { Store } from 'antd/es/form/interface';
-import { Link, useRequest, history } from 'umi';
+import { Link, history } from 'umi';
+import { useRequest } from 'ahooks';
 import type { StateType } from './service';
 import { doRegister } from './service';
 
@@ -55,18 +56,6 @@ const Register: FC = () => {
     [interval],
   );
 
-  const onGetCaptcha = () => {
-    let counts = 59;
-    setCount(counts);
-    interval = window.setInterval(() => {
-      counts -= 1;
-      setCount(counts);
-      if (counts === 0) {
-        clearInterval(interval);
-      }
-    }, 1000);
-  };
-
   const getPasswordStatus = () => {
     const value = form.getFieldValue('password');
     if (value && value.length > 9) {
@@ -78,7 +67,7 @@ const Register: FC = () => {
     return 'poor';
   };
 
-  const { loading: submitting, run: register } = useRequest<{ data: StateType }>(doRegister, {
+  const { loading: submitting, run: register} = useRequest(doRegister, {
     manual: true,
     onSuccess: (data, params) => {
       console.log(data);
@@ -91,6 +80,8 @@ const Register: FC = () => {
             account: params.email,
           },
         });
+      }else{
+        message.error(data.msg);
       }
     },
   });

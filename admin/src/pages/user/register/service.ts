@@ -12,10 +12,10 @@ export interface UserRegisterParams {
 }
 
 export async function doRegister(params: UserRegisterParams) {
-  let result = request('/api/register', {
-    method: 'POST',
-    data: params,
-  });
+  let result = await request("/api/register",{
+      method:"POST",
+      data:params,
+  })
   console.log(result);
   return result;
 }

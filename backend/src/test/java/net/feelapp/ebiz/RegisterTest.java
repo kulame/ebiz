@@ -17,7 +17,7 @@ public class RegisterTest {
     @Test
     public void testRegisterEndpoint() {
         JsonObject json = new JsonObject();
-        json.put("email",   "kula@live.com")
+        json.put("email",   "test01@live.com")
                 .put("password","123123")
                 .put("confirm","123123");
 
