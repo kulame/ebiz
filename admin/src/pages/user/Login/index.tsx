@@ -47,8 +47,9 @@ const Login: React.FC = () => {
 
   const intl = useIntl();
 
-  const fetchUserInfo = async () => {
-    const userInfo = await initialState?.fetchUserInfo?.();
+  const fetchUserInfo = async (access:string) => {
+    const userInfo = await initialState?.fetchUserInfo?.(access);
+    console.log(userInfo);
     if (userInfo) {
       setInitialState({
         ...initialState,
@@ -62,13 +63,15 @@ const Login: React.FC = () => {
     try {
       // 登录
       const msg = await login({ ...values, type });
+      console.log(msg);
       if (msg.status === 'ok') {
         const defaultloginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: '登录成功！',
         });
         message.success(defaultloginSuccessMessage);
-        await fetchUserInfo();
+        console.log(msg.data);
+        await fetchUserInfo(msg.data.access);
         goto();
         return;
       }

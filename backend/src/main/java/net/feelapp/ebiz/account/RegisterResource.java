@@ -13,7 +13,15 @@ import io.vertx.mutiny.sqlclient.Tuple;
 import java.time.LocalDateTime;
 import java.util.function.Function;
 
+import lombok.Data;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+@Data
+class RegisterReq {
+    private String email;
+    private String password;
+    private String confirm;
+}
 
 
 @Path("api/register")

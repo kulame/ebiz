@@ -3,9 +3,15 @@
 import { request } from 'umi';
 
 /** 获取当前的用户 GET /api/currentUser */
-export async function currentUser(options?: { [key: string]: any }) {
+export async function currentUser(params:any,options?: { [key: string]: any }) {
+  console.log(params);
   return request<API.CurrentUser>('/api/currentUser', {
-    method: 'GET',
+    method: 'POST',
+    requestType: 'json',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data:params,
     ...(options || {}),
   });
 }

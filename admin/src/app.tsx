@@ -23,11 +23,14 @@ export const initialStateConfig = {
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
   currentUser?: API.CurrentUser;
-  fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
+  fetchUserInfo?: (access?:string) => Promise<API.CurrentUser | undefined>;
 }> {
-  const fetchUserInfo = async () => {
+  const fetchUserInfo = async (access?:string) => {
     try {
-      const currentUser = await queryCurrentUser();
+      let params = {
+        "access":access
+      };
+      const currentUser = await queryCurrentUser(params);
       return currentUser;
     } catch (error) {
       console.log(error);
@@ -36,9 +39,7 @@ export async function getInitialState(): Promise<{
     return undefined;
   };
   // 如果是登录页面，不执行
-  console.log(history.location.pathname);
   var checkLogin = [loginPath,registerPath].indexOf(history.location.pathname);
-  console.log(`checkLogin:${checkLogin}`);
   if (checkLogin == -1) {
     const currentUser = await fetchUserInfo();
     return {
